@@ -23,6 +23,7 @@ App móvil para trackear hábitos, lecturas, películas/series y finanzas con Go
 
 ## Contacto
 
+- **Portfolio:** https://portfolio-six-sand-94.vercel.app/
 - **Email:** jaimeneiraazor@gmail.com
 - **LinkedIn:** [jaime-neira-azor](https://linkedin.com/in/jaime-neira-azor-62b31b30a)
 - **GitHub:** [Jaimeneira9](https://github.com/Jaimeneira9)
