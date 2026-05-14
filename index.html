@@ -891,20 +891,214 @@ footer {
 }
 .hero-cta-cv:hover { color: var(--fg); border-color: rgba(226,217,206,.3); }
 
-/* ── PROJECT VISUAL ── */
-.project-visual {
-  width: 100%;
-  aspect-ratio: 16 / 8;
+/* ── PHONE MOCKUP CAROUSEL ── */
+.phone-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 36px;
   margin-bottom: 24px;
-  border: 1px solid rgba(226,217,206,.07);
+}
+.phone-mockup {
+  width: 260px;
+  flex-shrink: 0;
+  border-radius: 36px;
+  border: 1px solid rgba(201,100,66,.2);
+  background: var(--bg2);
   position: relative;
   overflow: hidden;
-  background: var(--bg2);
+  box-shadow: 0 0 40px rgba(201,100,66,.06);
 }
-.project-visual canvas {
+.phone-notch {
+  height: 28px;
+  background: rgba(10,10,10,.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+.phone-notch::after {
+  content: '';
+  width: 60px;
+  height: 10px;
+  background: #0a0a0a;
+  border-radius: 0 0 8px 8px;
+  position: absolute;
+  top: 0;
+}
+.carousel-track {
+  display: flex;
+  transition: transform .4s ease;
+}
+.carousel-slide {
+  width: 100%;
+  flex-shrink: 0;
+}
+.carousel-slide img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+}
+.project-card-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.project-card-bullets li {
+  font-size: 14px;
+  color: var(--fg-mid);
+  line-height: 1.55;
+  padding-left: 18px;
+  position: relative;
+}
+.project-card-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 11px;
+  top: 1px;
+}
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  background: var(--bg2);
+}
+.carousel-btn {
+  background: none;
+  border: none;
+  color: var(--fg-dim);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+  transition: color .2s;
+}
+.carousel-btn:hover { color: var(--accent); }
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.carousel-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--fg-dim);
+  cursor: pointer;
+  transition: width .3s, border-radius .3s, background .3s;
+  flex-shrink: 0;
+}
+.carousel-dot.active {
+  width: 14px;
+  border-radius: 3px;
+  background: var(--accent);
+}
+.phone-col {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel-hint {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  opacity: 0.35;
+  margin-top: 10px;
+  animation: hint-pulse 2.2s ease-in-out infinite;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.carousel-hint.hidden {
+  opacity: 0;
+}
+@keyframes hint-pulse {
+  0%, 100% { opacity: .18; }
+  50% { opacity: .42; }
+}
+.v-nav-btn {
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,100,66,.2);
+  background: none;
+  color: var(--fg-dim);
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s, color .2s, border-color .2s;
+  margin: 5px 0;
+}
+.v-nav-btn.v-visible { opacity: 1; pointer-events: auto; }
+.v-nav-btn:hover { color: var(--accent); border-color: rgba(201,100,66,.5); }
+.stats-slide { position: relative; overflow: hidden; }
+.v-track {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform .4s ease;
+}
+.v-slide { flex-shrink: 0; width: 100%; }
+.v-slide img { display: block; width: 100%; height: auto; }
+.v-hint {
+  font-size: 9px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+  opacity: 0.35;
+  margin-top: 8px;
+  animation: hint-pulse 2.2s ease-in-out infinite;
+  transition: opacity .4s ease;
+  pointer-events: none;
+}
+.v-hint.hidden { opacity: 0 !important; animation: none; }
+.phone-info {
+  flex: 1;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.phone-info.fade {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.phone-info-label {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.phone-info-title {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 400;
+  color: var(--fg);
+  letter-spacing: -.01em;
+  margin-bottom: 14px;
+}
+.phone-info-desc {
+  font-size: 14px;
+  color: var(--fg-mid);
+  line-height: 1.8;
+}
+@media (max-width: 900px) {
+  .phone-wrapper { flex-direction: column; gap: 20px; }
+  .phone-mockup { width: 220px; }
+  .phone-info { text-align: center; }
 }
 
 /* ── TECH QUAD GRID ── */
@@ -1136,6 +1330,124 @@ footer {
   .project-card { width: 100%; padding: 32px 24px; }
   .proj-tech-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ── DEMO MODAL ── */
+.demo-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s ease, visibility .3s ease;
+}
+.demo-overlay.open { opacity: 1; visibility: visible; }
+.demo-modal {
+  background: var(--bg2);
+  border: 1px solid rgba(226,217,206,.1);
+  max-width: 980px;
+  width: 92vw;
+  max-height: 92vh;
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(28px);
+  transition: transform .35s ease;
+}
+.demo-overlay.open .demo-modal { transform: translateY(0); }
+.demo-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: var(--fg-dim);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-family: var(--sans);
+  cursor: none;
+  padding: 4px 8px;
+  transition: color .2s;
+}
+.demo-close:hover { color: var(--fg); }
+.demo-modal-header {
+  padding: 52px 52px 0;
+  margin-bottom: 36px;
+}
+.demo-modal-eyebrow {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.demo-modal-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 400;
+  letter-spacing: -.02em;
+  color: var(--fg);
+  line-height: 1.05;
+}
+.demo-modal-body {
+  padding: 0 52px 52px;
+  display: flex;
+  gap: 52px;
+  align-items: flex-start;
+}
+.demo-slide-info { flex: 1; padding-top: 4px; }
+.demo-slide-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.demo-slide-bullets li {
+  font-size: 13px;
+  color: var(--fg-mid);
+  line-height: 1.6;
+  padding-left: 18px;
+  position: relative;
+}
+.demo-slide-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 11px;
+  top: 1px;
+}
+.proj-link-btn {
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgba(226,217,206,.2);
+  padding: 0 0 2px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--fg);
+  cursor: none;
+  font-family: var(--sans);
+  transition: color .2s, border-color .2s;
+}
+.proj-link-btn:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 900px) {
+  .demo-modal-header { padding: 32px 24px 0; }
+  .demo-modal-body { padding: 0 24px 32px; flex-direction: column; gap: 28px; }
+  .demo-close { top: 16px; right: 16px; }
+  .proj-link-btn { cursor: pointer; }
+}
 </style>
 </head>
 <body>
@@ -1183,7 +1495,7 @@ footer {
     <h1 class="hero-name" id="hero-name">Jaime<br>Neira Azor</h1>
 
     <p class="hero-tagline" id="hero-tagline">
-      Acabo de terminar <strong>DAW</strong>, busco mi primera oportunidad como desarrollador backend. Llevo meses integrando IA en mi flujo diario — <em>no como atajo, como multiplicador.</em>
+      Construyo sistemas backend que corren solos — pipelines de datos, APIs robustas y flujos agenticos. <em>La IA como multiplicador, no como atajo.</em>
     </p>
 
     <div class="hero-ctas">
@@ -1230,9 +1542,15 @@ footer {
             <path d="M2 8L8 2M3 2h5v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
           </svg>
         </a>
-        <p class="project-card-desc">
-          Plataforma fullstack de fantasy esports para la <strong>LEC</strong>: ligas privadas, mercado de pujas ciegas y scoring por roles. Pipeline que ingesta partidas cada hora vía scraping con <strong>Cloudflare Browser Rendering API</strong>, calcula puntos en tiempo real y actualiza el estado de todas las ligas activas. Backend desplegado en <strong>VPS propio</strong> — servidor real con su Nginx, systemd y certificados. <strong>CI/CD con GitHub Actions</strong>: cada cambio pasa por PR con security review, tests automatizados y validación frontend/backend antes de merge a main. Arquitectura diseñada con <strong>desarrollo agentico</strong>: memoria persistente entre sesiones, especificaciones como fuente de verdad y delegación a subagentes.
-        </p>
+        <div class="project-card-desc">
+          <p>Plataforma fullstack de fantasy esports para la <strong>LEC</strong>: ligas privadas, mercado de pujas ciegas y scoring por roles en tiempo real.</p>
+          <ul class="project-card-bullets">
+            <li>Pipeline que ingesta partidas cada hora vía <strong>Cloudflare Browser Rendering API</strong> y actualiza el estado de todas las ligas activas</li>
+            <li>Desplegado en <strong>VPS propio</strong> con Nginx, systemd, Docker y certificados SSL</li>
+            <li><strong>CI/CD con GitHub Actions</strong>: PR → security review → tests automatizados → deploy</li>
+            <li>Arquitectura agentica con <strong>Claude Code</strong>: memoria persistente, specs como fuente de verdad y subagentes especializados</li>
+          </ul>
+        </div>
         <div class="project-card-tech">
           <p class="proj-tech-label">Stack</p>
           <div class="proj-tech-grid">
@@ -1267,9 +1585,14 @@ footer {
             <path d="M2 8L8 2M3 2h5v5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
           </svg>
         </a>
-        <p class="project-card-desc">
-          App móvil para <strong>trackear de forma unificada</strong> hábitos, lecturas, películas/series y finanzas personales. Integra <strong>Google Books API</strong> y <strong>TMDB</strong> para enriquecer los datos automáticamente. Backend con <strong>FastAPI</strong> y base de datos en <strong>Supabase</strong> — pensado para ser escalable cuando llegue a producción.
-        </p>
+        <div class="project-card-desc">
+          <p>App móvil para <strong>trackear de forma unificada</strong> hábitos, lecturas, películas/series y finanzas personales.</p>
+          <ul class="project-card-bullets">
+            <li>Portadas e información real desde <strong>Google Books API</strong> y <strong>TMDB</strong></li>
+            <li>Seguimiento de metas anuales, rachas de hábitos y balance financiero mensual</li>
+            <li>Backend <strong>FastAPI</strong> + <strong>Supabase</strong> — arquitectura pensada para escalar a producción</li>
+          </ul>
+        </div>
         <div class="project-card-tech">
           <p class="proj-tech-label">Stack</p>
           <div class="proj-tech-grid">
@@ -1286,6 +1609,7 @@ footer {
         <div class="project-card-footer">
           <div class="project-status"><span class="status-dot active"></span> En desarrollo</div>
           <div class="project-card-links">
+            <button class="proj-link-btn" id="leg-demo-btn">Ver demo</button>
             <a href="https://github.com/Jaimeneira9" target="_blank" rel="noopener" class="proj-link">GitHub</a>
           </div>
         </div>
@@ -1306,28 +1630,19 @@ footer {
       </div>
       <div class="about-right">
         <p class="about-bio">
-          Acabo de terminar <strong>Desarrollo de Aplicaciones Web</strong> en el IES Bernaldo de Quirós (Asturias) y estoy buscando mi primera oportunidad profesional. Me inclino hacia el <strong>backend</strong> — me gusta diseñar APIs, modelar datos y que las cosas funcionen bien por debajo.
+          Backend developer con foco en IA aplicada. Recién terminé DAW, pero <strong>Summoner's Fantasy</strong> lleva meses en producción — VPS propio, CI/CD real con GitHub Actions y un pipeline de datos que corre solo cada hora.
         </p>
 
         <p class="about-bio">
-          Durante el FP la base fue <strong>Java con Spring Boot</strong> y desarrollo de APIs REST. También vimos <strong>Angular</strong>, aunque lo toqué por encima — suficiente para entender el ecosistema frontend y defenderme cuando toca. Por mi cuenta trabajo con <strong>FastAPI</strong> (Python), <strong>Next.js 14</strong> + TypeScript y <strong>React Native</strong> con Expo. Persisto en <strong>PostgreSQL</strong>, normalmente vía Supabase, y despliego tanto en <strong>Vercel</strong> como en <strong>VPS propios</strong> que configuro desde cero — Nginx, systemd, certificados, todo.
+          Lo que me diferencia es cómo integro la IA en el trabajo real: <strong>Claude Code</strong>, MCP, flujos agenticos con subagentes, especificaciones como fuente de verdad. No es "IA que escribe código" — es diseñar cómo el agente <em>piensa, recuerda y delega.</em>
         </p>
 
-        <p class="about-bio">
-          Durante las prácticas en <strong>Hunosa</strong> automaticé procesos con Python y VBA e integré APIs de datos energéticos (Datadis) y meteorológicos (Zeus). Fue donde confirmé que el backend es lo mío — me gusta que los datos fluyan, que las cosas se automaticen y que el sistema funcione sin intervención manual.
-        </p>
-
-        <p class="about-bio">
-          La pieza que diferencia mi forma de trabajar es la <strong>IA</strong>: llevo meses usándola como parte de mi flujo diario — Claude Code, MCP, flujos agenticos con subagentes, desarrollo guiado por especificaciones, memoria persistente. Herramientas como Paper, Google Stitch y Gentle-ai forman parte de cómo construyo. No es "que la IA me escriba código" — es diseñar la arquitectura de cómo el agente piensa, recuerda y delega.
-        </p>
-
-        <p class="about-bio">
-          Ahora estoy preparando la certificación <strong>AWS Solutions Architect — Associate</strong> y a continuación irá <strong>AWS Cloud Developer</strong> — quiero entender la nube a nivel de arquitecto, no solo de usuario. En septiembre, si no surge trabajo, empiezo la <strong>especialización de IA y Big Data</strong>. Mientras tanto, construyo proyectos propios que uso de verdad y los despliego en producción.
-        </p>
-
-        <p class="about-bio">
-          Por lo demás: <strong>buen nivel de inglés</strong> (B2/C1), <strong>buena comunicación</strong> — sé explicar lo que hago y por qué — y <strong>trabajo en equipo</strong> — PRs, code reviews, feedback sin ego. Eso ya lo practiqué en las prácticas y es lo que quiero llevar a un equipo real.
-        </p>
+        <a href="CV_Jaime_Neira_Azor.pdf" target="_blank" class="hero-cta-cv" style="display:inline-flex;margin-bottom:40px;">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M7 1v8M4 6l3 3 3-3M2 10v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Ver CV completo
+        </a>
 
         <p class="certs-label">Certificaciones</p>
         <div class="cert-item"><span class="cert-name"><span class="cert-status in-progress">En curso</span> AWS Solutions Architect — Associate</span><span class="cert-date">2026</span></div>
@@ -1400,6 +1715,67 @@ footer {
 </footer>
 
 </main>
+
+<!-- ══ DEMO MODAL ══ -->
+<div class="demo-overlay" id="demo-overlay" role="dialog" aria-modal="true" aria-label="Demo de Legendarium">
+  <div class="demo-modal">
+    <button class="demo-close" id="demo-close">Cerrar ✕</button>
+    <div class="demo-modal-header">
+      <p class="demo-modal-eyebrow">Legendarium — Demo interactiva</p>
+      <h3 class="demo-modal-title">Así funciona.</h3>
+    </div>
+    <div class="demo-modal-body">
+      <div class="phone-col">
+        <button class="v-nav-btn" id="stats-up" aria-label="Captura anterior">▲</button>
+        <div class="phone-mockup" id="leg-carousel">
+          <div class="phone-notch"></div>
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="legendarium/fotos/Legendarium_login.png" alt="Login" loading="lazy"></div>
+            <div class="carousel-slide"><img src="legendarium/fotos/Legendarium_captura_2.png" alt="Hoy" loading="lazy"></div>
+            <div class="carousel-slide"><img src="legendarium/fotos/Legendarium_captura_3.png" alt="Biblioteca" loading="lazy"></div>
+            <div class="carousel-slide"><img src="legendarium/fotos/Legendarium_captura_4.png" alt="Cartelera" loading="lazy"></div>
+            <div class="carousel-slide"><img src="legendarium/fotos/Legendarium_finanzas.png" alt="Finanzas" loading="lazy"></div>
+            <div class="carousel-slide stats-slide" id="stats-slide">
+              <div class="v-track" id="v-track">
+                <div class="v-slide"><img src="legendarium/fotos/Legendarium_captura_6.png" alt="Perfil" loading="lazy"></div>
+                <div class="v-slide"><img src="legendarium/fotos/Legendarium_captura_7.png" alt="Stats 1" loading="lazy"></div>
+                <div class="v-slide"><img src="legendarium/fotos/Legendarium_captura_8.png" alt="Stats 2" loading="lazy"></div>
+                <div class="v-slide"><img src="legendarium/fotos/Legendarium_captura_9.png" alt="Stats 3" loading="lazy"></div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-nav">
+            <button class="carousel-btn" id="leg-prev" aria-label="Anterior">&#8249;</button>
+            <div class="carousel-dots">
+              <span class="carousel-dot active"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+            </div>
+            <button class="carousel-btn" id="leg-next" aria-label="Siguiente">&#8250;</button>
+          </div>
+        </div>
+        <button class="v-nav-btn" id="stats-down" aria-label="Captura siguiente">▼</button>
+        <p class="v-hint hidden" id="v-hint">▲&nbsp;&nbsp;más capturas&nbsp;&nbsp;▼</p>
+        <p class="carousel-hint" id="leg-hint">&#8249;&nbsp;&nbsp;navegar&nbsp;&nbsp;&#8250;</p>
+      </div>
+      <div class="demo-slide-info">
+        <div class="phone-info" id="leg-info">
+          <p class="phone-info-label">01 / 06</p>
+          <h4 class="phone-info-title">Login</h4>
+          <p class="phone-info-desc">Tu punto de entrada al universo Legendarium. Diseño limpio y acceso rápido.</p>
+          <ul class="demo-slide-bullets" id="leg-bullets">
+            <li>Autenticación segura con Supabase Auth</li>
+            <li>Continuar con Google OAuth en un tap</li>
+            <li>Sesión persistente entre aperturas de la app</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 // ── INTERACTIVE DOT GRID (canvas, full page) ──
@@ -1778,7 +2154,12 @@ document.querySelectorAll('.project-item').forEach(item => {
       trigger: '#projects',
       pin: true,
       scrub: 1,
-      start: 'center center',
+      start: () => {
+        const header = document.querySelector('.projects-header');
+        const card = track.querySelector('.project-card');
+        const targetTop = window.innerHeight - header.offsetHeight - card.offsetHeight - 48;
+        return `top ${targetTop}px`;
+      },
       end: () => '+=' + trackWidth(),
       invalidateOnRefresh: true,
       onUpdate: self => {
@@ -1821,153 +2202,195 @@ gsap.to('.cert-item', {
   }
 });
 
-// ── PROJECT VISUALS ──
+// ── DEMO MODAL + PHONE CAROUSEL ──
 (function() {
-  function initCanvas(id) {
-    const canvas = document.getElementById(id);
-    if (!canvas) return null;
-    const parent = canvas.parentElement;
-    const dpr = window.devicePixelRatio || 1;
-    function resize() {
-      canvas.width = parent.offsetWidth * dpr;
-      canvas.height = parent.offsetHeight * dpr;
-      canvas.style.width = parent.offsetWidth + 'px';
-      canvas.style.height = parent.offsetHeight + 'px';
-    }
-    resize();
-    window.addEventListener('resize', resize);
-    return { canvas, ctx: canvas.getContext('2d'), dpr, get w() { return canvas.width; }, get h() { return canvas.height; } };
+  const overlay  = document.getElementById('demo-overlay');
+  const demoBtn  = document.getElementById('leg-demo-btn');
+  const closeBtn = document.getElementById('demo-close');
+  const el       = document.getElementById('leg-carousel');
+  const info     = document.getElementById('leg-info');
+  const hint     = document.getElementById('leg-hint');
+  if (!overlay || !demoBtn || !el || !info) return;
+
+  const track     = el.querySelector('.carousel-track');
+  const dots      = el.querySelectorAll('.carousel-dot');
+  const prevBtn   = document.getElementById('leg-prev');
+  const nextBtn   = document.getElementById('leg-next');
+  const infoLabel = info.querySelector('.phone-info-label');
+  const infoTitle = info.querySelector('.phone-info-title');
+  const infoDesc  = info.querySelector('.phone-info-desc');
+  const bulletsList = document.getElementById('leg-bullets');
+  const total = dots.length;
+  let current = 0;
+
+  // Vertical stats carousel
+  const STATS_IDX  = 5;
+  const vTrack     = document.getElementById('v-track');
+  const statsUp    = document.getElementById('stats-up');
+  const statsDown  = document.getElementById('stats-down');
+  const vHint      = document.getElementById('v-hint');
+  const statsSlideEl = document.getElementById('stats-slide');
+  const vSlides    = vTrack ? vTrack.querySelectorAll('.v-slide') : [];
+  const vTotal     = vSlides.length;
+  let vCurrent     = 0;
+  let vHintUsed    = false;
+
+  // Set stats-slide height = one screenshot's real height (avoids layout inflation)
+  if (statsSlideEl) {
+    const probe = new Image();
+    probe.onload = function() {
+      const ratio = this.naturalHeight / this.naturalWidth;
+      statsSlideEl.style.height = Math.round(statsSlideEl.offsetWidth * ratio) + 'px';
+    };
+    probe.src = 'legendarium/fotos/Legendarium_captura_6.png';
   }
 
-  // Summoner's Fantasy — data network
-  (function() {
-    const c = initCanvas('pv-1');
-    if (!c) return;
-    const nodes = [];
-    const N = 18;
-    for (let i = 0; i < N; i++) {
-      nodes.push({
-        x: 0.05 + Math.random() * 0.9,
-        y: 0.1 + Math.random() * 0.8,
-        r: 2 + Math.random() * 3,
-        phase: Math.random() * Math.PI * 2,
-        speed: 0.4 + Math.random() * 0.6,
-        main: i < 4
-      });
+  const slides = [
+    {
+      label: '01 / 06', title: 'Login',
+      desc: 'Acceso seguro con email/contraseña o Google en un tap. La sesión se mantiene activa entre aperturas de la app y se renueva sola cuando caduca.',
+      bullets: [
+        'Autenticación con Supabase Auth — al hacer login devuelve un JWT que viaja en el header de cada petición',
+        'Google OAuth usa el flujo PKCE: el secreto nunca viaja en el cliente, solo un código de un solo uso',
+        'Si el token expira, un interceptor HTTP lo renueva en background y reintenta la petición original sin que el usuario note nada',
+      ]
+    },
+    {
+      label: '02 / 06', title: 'Hoy',
+      desc: 'Vista diaria de tus rutinas. Al crear un hábito elegís una imagen de tu galería para identificarlo, y la app lleva el control de tu racha de constancia.',
+      bullets: [
+        'Cada tap en un hábito hace un INSERT en base de datos; la racha se recalcula consultando el historial de completados',
+        'La UI responde al instante (optimistic update) — si la escritura falla, el estado se revierte automáticamente',
+        'La imagen se sube a Supabase Storage al crear el hábito y se cachea en el dispositivo para no re-descargarla',
+      ]
+    },
+    {
+      label: '03 / 06', title: 'Biblioteca',
+      desc: 'Tu estantería personal conectada a Google Books. Buscás un título, la app consulta la API y trae portada, autor e información oficial.',
+      bullets: [
+        'Cada tecla que pulsás espera 400 ms antes de lanzar el GET a Google Books API — evita una petición por cada letra',
+        'Los libros ya buscados se guardan en caché local (Hive) para no repetir la misma llamada si volvés a buscarlos',
+        'El progreso de lectura (páginas actuales / totales) se persiste en Supabase y sincroniza entre dispositivos',
+      ]
+    },
+    {
+      label: '04 / 06', title: 'Cartelera',
+      desc: 'Registro de películas y series conectado a TMDB. La app consulta la API para traer pósters, sinopsis y datos oficiales de cada título.',
+      bullets: [
+        'GET /search/movie y /search/tv a la API de TMDB — la API key viaja cifrada en variables de entorno, nunca en el código',
+        'Una capa de repositorio decide si sirve el dato desde caché local o hace una nueva petición a TMDB',
+        'Las imágenes se cachean automáticamente en disco — si ya descargaste un póster, no vuelve a pedirlo',
+      ]
+    },
+    {
+      label: '05 / 06', title: 'Finanzas',
+      desc: 'Tracker de gastos con lector automático de correos bancarios. Cuando el banco manda un email, un servidor lo detecta y registra el movimiento sin que toques nada.',
+      bullets: [
+        'La Gmail API notifica via webhook cuando llega un email nuevo — no hay polling, el servidor reacciona al evento',
+        'Una función serverless analiza el HTML del correo con regex para extraer el importe, el comercio y la fecha',
+        'Categorización automática por palabras clave: "Mercadona" → Alimentación, "Spotify" → Suscripciones',
+      ]
+    },
+  ];
+
+  const statsSubSlides = [
+    {
+      label: '06 / 06', title: 'Perfil',
+      desc: 'Tu perfil de usuario con el resumen de todo lo que has registrado en la app.',
+      bullets: [
+        'Los datos del perfil se leen con un único GET a Supabase al abrir la pantalla',
+        'Avatar almacenado en Supabase Storage — la URL pública se guarda en la tabla de usuarios',
+        'Totales de libros, películas y hábitos calculados con consultas COUNT agrupadas por user_id',
+      ]
+    },
+    {
+      label: '06 / 06', title: 'Metas anuales',
+      desc: 'Seguimiento de tus objetivos del año. La app proyecta si vas en camino de cumplirlos según tu ritmo actual.',
+      bullets: [
+        'Las metas se guardan en Supabase y se comparan contra los registros reales del año en curso',
+        'El progreso se calcula en servidor: libros leídos / meta × 100 — el cliente solo recibe el porcentaje',
+        'Proyección de ritmo: registros ÷ días transcurridos × 365 para estimar si llegarás a la meta',
+      ]
+    },
+    {
+      label: '06 / 06', title: 'Actividad reciente',
+      desc: 'Gráfico de los últimos días de actividad. Muestra cuándo completaste hábitos, leíste o registraste películas.',
+      bullets: [
+        'Una sola query agrupada por fecha trae los eventos de los últimos 15 días desde Supabase',
+        'El gráfico se renderiza en el cliente con fl_chart sobre los datos que devuelve el servidor',
+        'Combina eventos de tres tablas distintas (hábitos, libros, películas) en una respuesta unificada',
+      ]
+    },
+    {
+      label: '06 / 06', title: 'Géneros favoritos',
+      desc: 'Desglose de tus géneros más vistos y leídos, calculado automáticamente a partir de tu historial.',
+      bullets: [
+        'Los géneros vienen del campo genre_ids en los datos de TMDB y Google Books al guardar cada título',
+        'El ranking se calcula con una query COUNT agrupada por género sobre el historial del usuario',
+        'Se actualiza en tiempo real: cada vez que añadís un título, el ranking puede cambiar',
+      ]
+    },
+  ];
+
+  function updateInfo(s) {
+    info.classList.add('fade');
+    setTimeout(() => {
+      infoLabel.textContent = s.label;
+      infoTitle.textContent = s.title;
+      infoDesc.textContent  = s.desc;
+      bulletsList.innerHTML = s.bullets.map(b => `<li>${b}</li>`).join('');
+      info.classList.remove('fade');
+    }, 250);
+  }
+
+  function goToVertical(idx) {
+    vCurrent = (idx + vTotal) % vTotal;
+    const slideH = statsSlideEl ? statsSlideEl.offsetHeight : 0;
+    vTrack.style.transform = `translateY(-${vCurrent * slideH}px)`;
+    updateInfo(statsSubSlides[vCurrent]);
+    if (!vHintUsed) { vHintUsed = true; vHint.classList.add('hidden'); }
+  }
+
+  function goTo(idx) {
+    current = (idx + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+
+    const isStats = current === STATS_IDX;
+    if (statsUp)   statsUp.classList.toggle('v-visible', isStats);
+    if (statsDown) statsDown.classList.toggle('v-visible', isStats);
+
+    if (isStats) {
+      updateInfo(statsSubSlides[vCurrent]);
+      if (!vHintUsed && vHint) vHint.classList.remove('hidden');
+    } else {
+      updateInfo(slides[current]);
+      if (vHint) vHint.classList.add('hidden');
+      vCurrent = 0;
+      if (vTrack) vTrack.style.transform = 'translateY(0)';
     }
-    const edges = [];
-    nodes.forEach((a, i) => {
-      nodes.forEach((b, j) => {
-        if (j <= i) return;
-        const dx = (a.x - b.x) * c.w;
-        const dy = (a.y - b.y) * c.h;
-        if (Math.sqrt(dx*dx + dy*dy) < c.w * 0.28) edges.push([i, j]);
-      });
-    });
 
-    let t = 0;
-    function draw() {
-      const { ctx, w, h } = c;
-      ctx.clearRect(0, 0, w, h);
+    if (hint) hint.classList.add('hidden');
+  }
 
-      // subtle grid
-      ctx.strokeStyle = 'rgba(226,217,206,0.04)';
-      ctx.lineWidth = 1;
-      for (let x = 0; x < w; x += 40 * c.dpr) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
-      }
-      for (let y = 0; y < h; y += 40 * c.dpr) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
-      }
+  function openModal() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-      // edges
-      edges.forEach(([i, j]) => {
-        const a = nodes[i], b = nodes[j];
-        const pulse = 0.5 + 0.5 * Math.sin(t * 0.8 + a.phase);
-        ctx.strokeStyle = `rgba(201,100,66,${0.06 + pulse * 0.08})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(a.x * w, a.y * h);
-        ctx.lineTo(b.x * w, b.y * h);
-        ctx.stroke();
-      });
-
-      // nodes
-      nodes.forEach(n => {
-        const pulse = 0.5 + 0.5 * Math.sin(t * n.speed + n.phase);
-        const alpha = n.main ? 0.6 + pulse * 0.4 : 0.2 + pulse * 0.25;
-        const radius = n.r * c.dpr * (n.main ? 1 + pulse * 0.4 : 1);
-        ctx.beginPath();
-        ctx.arc(n.x * w, n.y * h, radius, 0, Math.PI * 2);
-        ctx.fillStyle = n.main ? `rgba(201,100,66,${alpha})` : `rgba(176,168,158,${alpha})`;
-        ctx.fill();
-      });
-
-      // label
-      ctx.font = `${10 * c.dpr}px 'Space Grotesk', sans-serif`;
-      ctx.fillStyle = 'rgba(122,113,104,0.5)';
-      ctx.fillText('LIVE DATA PIPELINE', 14 * c.dpr, h - 10 * c.dpr);
-
-      t += 0.016;
-      requestAnimationFrame(draw);
-    }
-    draw();
-  })();
-
-  // Legendarium — habit grid
-  (function() {
-    const c = initCanvas('pv-2');
-    if (!c) return;
-    const COLS = 24, ROWS = 6;
-    const data = Array.from({length: ROWS * COLS}, () => Math.random());
-    let t = 0;
-
-    function draw() {
-      const { ctx, w, h } = c;
-      ctx.clearRect(0, 0, w, h);
-
-      const padX = 16 * c.dpr, padY = 16 * c.dpr;
-      const cellW = (w - padX * 2) / COLS;
-      const cellH = (h - padY * 2) / ROWS;
-      const dot = Math.min(cellW, cellH) * 0.34;
-
-      for (let r = 0; r < ROWS; r++) {
-        for (let col = 0; col < COLS; col++) {
-          const v = data[r * COLS + col];
-          const pulse = 0.5 + 0.5 * Math.sin(t * 0.7 + (r + col) * 0.4);
-          const cx = padX + col * cellW + cellW / 2;
-          const cy = padY + r * cellH + cellH / 2;
-          let alpha, color;
-          if (v > 0.72) {
-            alpha = 0.55 + pulse * 0.25;
-            color = `rgba(201,100,66,${alpha})`;
-          } else if (v > 0.45) {
-            alpha = 0.15 + pulse * 0.1;
-            color = `rgba(176,168,158,${alpha})`;
-          } else {
-            alpha = 0.05 + pulse * 0.04;
-            color = `rgba(226,217,206,${alpha})`;
-          }
-          ctx.beginPath();
-          ctx.arc(cx, cy, dot, 0, Math.PI * 2);
-          ctx.fillStyle = color;
-          ctx.fill();
-        }
-      }
-
-      // category labels
-      const labels = ['HÁBITOS', 'LIBROS', 'SERIES', 'FINANZAS', 'PELICULAS', 'MISC'];
-      ctx.font = `${7.5 * c.dpr}px 'Space Grotesk', sans-serif`;
-      for (let r = 0; r < ROWS; r++) {
-        ctx.fillStyle = 'rgba(122,113,104,0.4)';
-        ctx.fillText(labels[r] || '', 14 * c.dpr, padY + r * cellH + cellH / 2 + 3 * c.dpr);
-      }
-
-      t += 0.016;
-      requestAnimationFrame(draw);
-    }
-    draw();
-  })();
+  demoBtn.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
+  if (statsUp)   statsUp.addEventListener('click',   () => goToVertical(vCurrent - 1));
+  if (statsDown) statsDown.addEventListener('click', () => goToVertical(vCurrent + 1));
 })();
 
 // ── CONTACT ANIMATION ──
