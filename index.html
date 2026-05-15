@@ -1005,24 +1005,65 @@ footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
-.carousel-hint {
-  font-size: 9px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--fg-dim);
-  opacity: 0.35;
-  margin-top: 10px;
-  animation: hint-pulse 2.2s ease-in-out infinite;
-  transition: opacity .4s ease;
+.carousel-hint,
+.v-hint {
+  position: absolute;
+  left: calc(100% + 4px);
+  bottom: 62px;
+  transform: translateY(50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
   pointer-events: none;
+  transition: opacity .4s ease;
+  white-space: nowrap;
+  animation: hint-pulse 2.6s ease-in-out infinite;
 }
-.carousel-hint.hidden {
-  opacity: 0;
+.carousel-hint.hidden { opacity: 0; animation: none; }
+.v-hint.hidden { opacity: 0 !important; animation: none; }
+.v-hint {
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
+.v-hint .hint-line {
+  margin: 0;
+}
+
+.hint-line {
+  width: 12px;
+  height: 1.5px;
+  background: var(--accent);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.hint-arrow {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.hint-label {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+
 @keyframes hint-pulse {
-  0%, 100% { opacity: .18; }
-  50% { opacity: .42; }
+  0%, 100% { opacity: .45; }
+  50% { opacity: .9; }
+}
+
+@media (max-width: 900px) {
+  .carousel-hint, .v-hint { display: none; }
 }
 .v-nav-btn {
   align-self: center;
@@ -1055,18 +1096,7 @@ footer {
 }
 .v-slide { flex-shrink: 0; width: 100%; }
 .v-slide img { display: block; width: 100%; height: auto; }
-.v-hint {
-  font-size: 9px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--fg-dim);
-  opacity: 0.35;
-  margin-top: 8px;
-  animation: hint-pulse 2.2s ease-in-out infinite;
-  transition: opacity .4s ease;
-  pointer-events: none;
-}
-.v-hint.hidden { opacity: 0 !important; animation: none; }
+
 .phone-info {
   flex: 1;
   transition: opacity .25s ease, transform .25s ease;
@@ -1757,8 +1787,16 @@ footer {
           </div>
         </div>
         <button class="v-nav-btn" id="stats-down" aria-label="Captura siguiente">▼</button>
-        <p class="v-hint hidden" id="v-hint">▲&nbsp;&nbsp;más capturas&nbsp;&nbsp;▼</p>
-        <p class="carousel-hint" id="leg-hint">&#8249;&nbsp;&nbsp;navegar&nbsp;&nbsp;&#8250;</p>
+        <div class="carousel-hint" id="leg-hint">
+          <span class="hint-line"></span>
+          <span class="hint-arrow">→</span>
+          <span class="hint-label">desliza</span>
+        </div>
+        <div class="v-hint hidden" id="v-hint">
+          <span class="hint-line"></span>
+          <span class="hint-arrow">↓</span>
+          <span class="hint-label">desliza</span>
+        </div>
       </div>
       <div class="demo-slide-info">
         <div class="phone-info" id="leg-info">
